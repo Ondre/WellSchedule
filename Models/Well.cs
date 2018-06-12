@@ -13,7 +13,6 @@ namespace WellSchedule.Models {
         public string Name { get; set; }
 
         public Job GetById(int id) {
-            Jobs.GetRange(1,1);
             return Jobs.Find(x => x.Id == id);
         }
     }
