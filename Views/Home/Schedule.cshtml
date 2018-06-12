@@ -1,0 +1,92 @@
+@model WellSchedule.Models.Schedule  
+
+@{
+    ViewData["Title"] = "Schedule";
+}
+
+<table id="table">
+    <tbody>
+        <tr> <td>Скважина</td> 
+        @for (int i = 0; i < 30; i ++){
+            <td>@i</td>
+        }
+        <td>Работы</td>
+        </tr>
+
+@foreach (var well in @Model.Wells) {
+        <tr>
+            <td>@well.Name</td>
+            @for (int i=0; i < 30; i++){
+                @if (@well.Jobs. Find(x => x.From.Day == @i)) {
+                    <td>@well.Jobs</td>
+                }
+            }
+            
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+
+<div id="scheduletable">
+<h1>Планирование</h1>
+  <select id="year" value="">
+    <option></option>
+    <option>2017</option>
+    <option>2018</option>
+    <option>2019</option>
+    <option>2020</option>
+    <option>2021</option>
+  </select>
+  <select id="month" value="">
+    <option></option>
+    <option>Январь</option>
+    <option>Февраль</option>
+    <option>Март</option>
+    <option>Апрель</option>
+    <option>Май</option>
+    <option>Июнь</option>
+    <option>Июль</option>
+    <option>Август</option>
+    <option>Сентябрь</option>
+    <option>Октябрь</option>
+    <option>Ноябрь</option>
+    <option>Декабрь</option>
+  </select>
+<table id="table">
+    <tbody>
+    </tbody>
+  </table>
+  
+  <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+      <h3>Новая работа</h3>
+      <div class="inline">
+      <div class="inline">
+      Название: <br/>
+      Бригада: <br/>
+      Дата начала работы: <br/>
+      Дата конца работы: <br/> <br />
+      </div>
+      <div class="inline">
+        <form id="addJobForm">
+         
+          <input autofocus name="jobName" value=""/> <br/>
+          <input name="brigade" value=""/> <br/>
+          <input type="date" name="beginDate"/> <br/>
+          <input type="date" name="endDate"/> <br/>
+        <input type="button" name="okButton" value="OK"/>
+        </form>
+          </div>
+          
+      </div>
+  </div>
+
+</div>
+</div>
+
+<script type="text/javascript" src="~/js/table.js"></script>
